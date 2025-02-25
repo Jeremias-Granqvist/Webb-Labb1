@@ -21,7 +21,21 @@
     background-color: #04AA6D;
     color: black;
 }
-
+#myLinks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+  }
+  
+  .checkout {
+    margin-left: auto;
+  }
+  .checkout-active{
+    margin-left: auto;
+    background-color: #04AA6D;
+    color: black;
+  }
 @media screen and (max-width: 600px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
@@ -46,6 +60,6 @@ h5{
 }
 
 .service-icon {
-    font-size: 24px; /* Adjust the size of the icon */
-    margin-right: 10px; /* Space between the icon and the text */
+    font-size: 24px;
+    margin-right: 10px; 
   }

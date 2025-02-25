@@ -32,36 +32,27 @@ function hamburger() {
     ]
   };
   
-  // Function to create the accordion dynamically
   function createAccordion() {
     const accordionContainer = document.getElementById('accordionServices');
   
-    // Create Household Accordion
     const householdAccordion = createAccordionItem('Household Cleaning Services', servicesData.household, 'Household');
     accordionContainer.appendChild(householdAccordion);
   
-    // Create Business Accordion
     const businessAccordion = createAccordionItem('Business Cleaning Services', servicesData.business, 'Business');
     accordionContainer.appendChild(businessAccordion);
   
-    // Create Industrial Accordion
     const industrialAccordion = createAccordionItem('Industrial Cleaning Services', servicesData.industrial, 'Industrial');
     accordionContainer.appendChild(industrialAccordion);
   }
   
-  // Helper function to create an accordion item
-// Helper function to create an accordion item
-// Helper function to create an accordion item
 function createAccordionItem(title, services, category) {
   const card = document.createElement('div');
   card.classList.add('card');
 
-  // Create card header
   const cardHeader = document.createElement('div');
   cardHeader.classList.add('card-header');
   cardHeader.id = `heading${category}`;
 
-  // Create the button for collapsing and expanding
   const headerButton = document.createElement('button');
   headerButton.classList.add('btn', 'btn-link', 'd-flex', 'justify-content-between', 'w-100');
   headerButton.setAttribute('type', 'button');
@@ -70,18 +61,16 @@ function createAccordionItem(title, services, category) {
   headerButton.setAttribute('aria-expanded', 'false');
   headerButton.setAttribute('aria-controls', `collapse${category}`);
   headerButton.style.color = 'black';
-  // Add the text of the title
+
   const buttonText = document.createElement('span');
   buttonText.textContent = title;
 
-  // Create the downwards arrow icon using Font Awesome
   const icon = document.createElement('i');
-  icon.classList.add('fas', 'fa-chevron-down'); // Downwards arrow icon
+  icon.classList.add('fas', 'fa-chevron-down'); 
 
   headerButton.appendChild(buttonText);
   headerButton.appendChild(icon);
 
-  // Toggle icon on collapse/expand
   headerButton.onclick = function() {
     if (headerButton.getAttribute('aria-expanded') === 'false') {
       icon.classList.remove('fa-chevron-down');
@@ -100,7 +89,6 @@ function createAccordionItem(title, services, category) {
   cardHeader.appendChild(headerH2);
   card.appendChild(cardHeader);
 
-  // Create card body with the list of services
   const collapseDiv = document.createElement('div');
   collapseDiv.id = `collapse${category}`;
   collapseDiv.classList.add('collapse');
@@ -114,52 +102,48 @@ function createAccordionItem(title, services, category) {
   services.forEach(service => {
     const listItem = document.createElement('li');
 
-    // Create a Font Awesome icon for the service
     const serviceIcon = document.createElement('i');
-    serviceIcon.classList.add('fas', 'fa-cleaning', 'service-icon'); // Use appropriate Font Awesome class
-    // Use a different class for each service if needed
+    serviceIcon.classList.add('fas', 'fa-cleaning', 'service-icon'); 
+
     if (service === "General House Cleaning") {
-      serviceIcon.classList.add('fa-broom'); // Example icon for house cleaning
+      serviceIcon.classList.add('fa-broom'); 
     } else if (service === "Carpet & Upholstery Cleaning") {
-      serviceIcon.classList.add('fa-couch'); // Example icon for carpet cleaning
+      serviceIcon.classList.add('fa-couch'); 
     } else if (service === "Window Cleaning") {
-      serviceIcon.classList.add('fa-window-maximize'); // Example icon for window cleaning
+      serviceIcon.classList.add('fa-window-maximize'); 
     } else if (service === "Deep Cleaning") {
-      serviceIcon.classList.add('fa-hand-sparkles'); // Example icon for window cleaning
+      serviceIcon.classList.add('fa-hand-sparkles'); 
     }else if (service === "Move-in/Move-out Cleaning") {
-      serviceIcon.classList.add('fa-house'); // Example icon for window cleaning
+      serviceIcon.classList.add('fa-house'); 
     }
 
     if (service === "Office Cleaning") {
-      serviceIcon.classList.add('fa-broom'); // Example icon for house cleaning
+      serviceIcon.classList.add('fa-broom'); 
     } else if (service === "Commercial Carpet Cleaning") {
-      serviceIcon.classList.add('fa-building'); // Example icon for carpet cleaning
+      serviceIcon.classList.add('fa-building'); 
     } else if (service === "Window Washing") {
-      serviceIcon.classList.add('fa-window-maximize'); // Example icon for window cleaning
+      serviceIcon.classList.add('fa-window-maximize'); 
     } else if (service === "Post-Construction Cleaning") {
-      serviceIcon.classList.add('fa-industry'); // Example icon for window cleaning
+      serviceIcon.classList.add('fa-industry'); 
     }else if (service === "Restroom Sanitization") {
-      serviceIcon.classList.add('fa-restroom'); // Example icon for window cleaning
+      serviceIcon.classList.add('fa-restroom'); 
     }
 
     if (service === "Pressure Washing") {
-      serviceIcon.classList.add('fa-spray-can-sparkles'); // Example icon for house cleaning
+      serviceIcon.classList.add('fa-spray-can-sparkles'); 
     } else if (service === "Floor Scrubbing & Polishing") {
-      serviceIcon.classList.add('fa-broom'); // Example icon for carpet cleaning
+      serviceIcon.classList.add('fa-broom'); 
     } else if (service === "Machinery Cleaning") {
-      serviceIcon.classList.add('fa-gears'); // Example icon for window cleaning
+      serviceIcon.classList.add('fa-gears'); 
     } else if (service === "Factory Cleaning") {
-      serviceIcon.classList.add('fa-industry'); // Example icon for window cleaning
+      serviceIcon.classList.add('fa-industry');
     }else if (service === "Waste Disposal") {
-      serviceIcon.classList.add('fa-recycle'); // Example icon for window cleaning
+      serviceIcon.classList.add('fa-recycle'); 
     }
-    // You can add more conditions for different services
 
-    // Create the service text
     const serviceText = document.createElement('span');
     serviceText.textContent = service;
 
-    // Create "Add to Order" button
     const addToOrderButton = document.createElement('button');
     addToOrderButton.classList.add('btn', 'btn-primary', 'btn-sm', 'ml-auto');
     addToOrderButton.textContent = 'Add to Order';
@@ -167,12 +151,11 @@ function createAccordionItem(title, services, category) {
       addToOrder(service);
     };
 
-    // Create a div to hold the list item, icon, text, and button, and apply flex to align everything
     const itemWrapper = document.createElement('div');
     itemWrapper.classList.add('d-flex', 'justify-content-between', 'align-items-center');
-    itemWrapper.appendChild(serviceIcon); // Add Font Awesome icon
-    itemWrapper.appendChild(serviceText);  // Add text
-    itemWrapper.appendChild(addToOrderButton); // Add button
+    itemWrapper.appendChild(serviceIcon); 
+    itemWrapper.appendChild(serviceText);  
+    itemWrapper.appendChild(addToOrderButton); 
 
     listItem.appendChild(itemWrapper);
     serviceList.appendChild(listItem);
@@ -185,17 +168,69 @@ function createAccordionItem(title, services, category) {
   return card;
 }
 
+let orderedItemsList = JSON.parse(localStorage.getItem('orderedItemsList')) || [];
+
+function addToOrder(service) {
+  // Create a new <li> element to display the service in the list
+  const orderItem = document.createElement('li');
+  orderItem.textContent = service;
+
+  // Add the new item to the list displayed on the page
+  const orderedItemsListElement = document.getElementById('orderedItemsList');
+  orderedItemsListElement.appendChild(orderItem);
+
+  // Add the service to the orderedItemsList array
+  orderedItemsList.push(service);
+
+  // Save the updated orderedItemsList array to localStorage
+  localStorage.setItem('orderedItemsList', JSON.stringify(orderedItemsList));
+
+  // Optionally: Display the ordered items again (to update the list view)
+  displayOrderedItems();
+}
+function displayOrderedItems() {
+  // Get the element where the ordered items will be displayed
+  const orderedItemsListElement = document.getElementById('orderedItemsList');
+
+  // Clear the list before displaying the updated items
+  orderedItemsListElement.innerHTML = '';
+
+  // Loop through the orderedItemsList array and display each item
+  orderedItemsList.forEach(function(item) {
+      const orderItem = document.createElement('li');
+      orderItem.textContent = item;
+      orderedItemsListElement.appendChild(orderItem);
+  });
+}
+
+    function addToOrder(service) {
+      const orderedItemsListElement = document.getElementById('orderedItemsList');
+      
+      const orderItem = document.createElement('li');
+      orderItem.textContent = service;
+      
+      orderedItemsListElement.appendChild(orderItem);
   
-  // Function to add an item to the order
-  function addToOrder(service) {
-    const orderedItemsList = document.getElementById('orderedItemsList');
-    
-    // Create a new list item for the ordered service
-    const orderItem = document.createElement('li');
-    orderItem.textContent = service;
-    
-    orderedItemsList.appendChild(orderItem);
+      orderedItemsList.push(service);
+  
+      localStorage.setItem('orderedItemsList', JSON.stringify(orderedItemsList));
+  
   }
-  
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const orderedItemsList = JSON.parse(localStorage.getItem('orderedItemsList')) || [];
+
+    const orderedItemsListElement = document.getElementById('orderedItemsList');
+
+    orderedItemsListElement.innerHTML = '';
+
+    orderedItemsList.forEach(function (item) {
+        const orderItem = document.createElement('li');
+        orderItem.textContent = item;
+        orderedItemsListElement.appendChild(orderItem);
+    });
+});
+
   window.onload = createAccordion;
   
