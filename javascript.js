@@ -7,44 +7,43 @@ function hamburger() {
     }
   }
 
+const servicesData = {
+  household: [
+    { name: "General House Cleaning", description: "A thorough cleaning for your entire home, including floors, windows, and more." },
+    { name: "Carpet & Upholstery Cleaning", description: "We provide deep cleaning for carpets and upholstery, removing stains and dirt." },
+    { name: "Window Cleaning", description: "Get sparkling clean windows inside and out." },
+    { name: "Deep Cleaning", description: "A more thorough cleaning service to remove dirt and grime from hidden areas." },
+    { name: "Move-in/Move-out Cleaning", description: "We clean before or after moving into a new home, making it spotless." }
+  ],
+  business: [
+    { name: "Office Cleaning", description: "Keep your office space clean and organized with regular cleaning." },
+    { name: "Commercial Carpet Cleaning", description: "We clean carpets in commercial spaces, ensuring they're fresh and presentable." },
+    { name: "Post-Construction Cleaning", description: "We clean up after construction or renovation, removing dust and debris." },
+    { name: "Window Washing", description: "We provide thorough washing for windows in commercial buildings." },
+    { name: "Restroom Sanitization", description: "We sanitize restrooms in businesses to ensure a clean and safe environment." }
+  ],
+  industrial: [
+    { name: "Factory Cleaning", description: "We clean factory floors, machinery, and other industrial spaces." },
+    { name: "Machinery Cleaning", description: "We clean machinery to maintain smooth operations and prevent breakdowns." },
+    { name: "Floor Scrubbing & Polishing", description: "We provide floor scrubbing and polishing for industrial floors." },
+    { name: "Pressure Washing", description: "We use high-pressure washing to clean factory exteriors and equipment." },
+    { name: "Waste Disposal", description: "We provide safe and efficient waste disposal services for industrial locations." }
+  ]
+};
 
-  const servicesData = {
-    household: [
-      "General House Cleaning",
-      "Carpet & Upholstery Cleaning",
-      "Window Cleaning",
-      "Deep Cleaning",
-      "Move-in/Move-out Cleaning"
-    ],
-    business: [
-      "Office Cleaning",
-      "Commercial Carpet Cleaning",
-      "Post-Construction Cleaning",
-      "Window Washing",
-      "Restroom Sanitization"
-    ],
-    industrial: [
-      "Factory Cleaning",
-      "Machinery Cleaning",
-      "Floor Scrubbing & Polishing",
-      "Pressure Washing",
-      "Waste Disposal"
-    ]
-  };
-  
-  function createAccordion() {
-    const accordionContainer = document.getElementById('accordionServices');
-  
-    const householdAccordion = createAccordionItem('Household Cleaning Services', servicesData.household, 'Household');
-    accordionContainer.appendChild(householdAccordion);
-  
-    const businessAccordion = createAccordionItem('Business Cleaning Services', servicesData.business, 'Business');
-    accordionContainer.appendChild(businessAccordion);
-  
-    const industrialAccordion = createAccordionItem('Industrial Cleaning Services', servicesData.industrial, 'Industrial');
-    accordionContainer.appendChild(industrialAccordion);
-  }
-  
+function createAccordion() {
+const accordionContainer = document.getElementById('accordionServices');
+
+const householdAccordion = createAccordionItem('Household Cleaning Services', servicesData.household, 'Household');
+accordionContainer.appendChild(householdAccordion);
+
+const businessAccordion = createAccordionItem('Business Cleaning Services', servicesData.business, 'Business');
+accordionContainer.appendChild(businessAccordion);
+
+const industrialAccordion = createAccordionItem('Industrial Cleaning Services', servicesData.industrial, 'Industrial');
+accordionContainer.appendChild(industrialAccordion);
+}
+
 function createAccordionItem(title, services, category) {
   const card = document.createElement('div');
   card.classList.add('card');
@@ -105,57 +104,36 @@ function createAccordionItem(title, services, category) {
     const serviceIcon = document.createElement('i');
     serviceIcon.classList.add('fas', 'fa-cleaning', 'service-icon'); 
 
-    if (service === "General House Cleaning") {
-      serviceIcon.classList.add('fa-broom'); 
-    } else if (service === "Carpet & Upholstery Cleaning") {
-      serviceIcon.classList.add('fa-couch'); 
-    } else if (service === "Window Cleaning") {
-      serviceIcon.classList.add('fa-window-maximize'); 
-    } else if (service === "Deep Cleaning") {
-      serviceIcon.classList.add('fa-hand-sparkles'); 
-    }else if (service === "Move-in/Move-out Cleaning") {
-      serviceIcon.classList.add('fa-house'); 
-    }
-
-    if (service === "Office Cleaning") {
-      serviceIcon.classList.add('fa-broom'); 
-    } else if (service === "Commercial Carpet Cleaning") {
-      serviceIcon.classList.add('fa-building'); 
-    } else if (service === "Window Washing") {
-      serviceIcon.classList.add('fa-window-maximize'); 
-    } else if (service === "Post-Construction Cleaning") {
-      serviceIcon.classList.add('fa-industry'); 
-    }else if (service === "Restroom Sanitization") {
-      serviceIcon.classList.add('fa-restroom'); 
-    }
-
-    if (service === "Pressure Washing") {
-      serviceIcon.classList.add('fa-spray-can-sparkles'); 
-    } else if (service === "Floor Scrubbing & Polishing") {
-      serviceIcon.classList.add('fa-broom'); 
-    } else if (service === "Machinery Cleaning") {
-      serviceIcon.classList.add('fa-gears'); 
-    } else if (service === "Factory Cleaning") {
-      serviceIcon.classList.add('fa-industry');
-    }else if (service === "Waste Disposal") {
-      serviceIcon.classList.add('fa-recycle'); 
-    }
+    assignServiceIcon(service.name, serviceIcon);
 
     const serviceText = document.createElement('span');
-    serviceText.textContent = service;
+    serviceText.textContent = service.name;
+
+    const moreInfoButton = document.createElement('button');
+    moreInfoButton.classList.add('btn', 'btn-info', 'btn-sm', 'ml-2');
+    moreInfoButton.textContent = 'More Info';
+    moreInfoButton.onclick = function() {
+      openModal(service.name, service.description); 
+    };
 
     const addToOrderButton = document.createElement('button');
-    addToOrderButton.classList.add('btn', 'btn-primary', 'btn-sm', 'ml-auto');
+    addToOrderButton.classList.add('btn', 'btn-primary', 'btn-sm', 'ml-2');
     addToOrderButton.textContent = 'Add to Order';
     addToOrderButton.onclick = function() {
-      addToOrder(service);
+      addToOrder(service.name);  
     };
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('d-flex', 'justify-content-end', 'w-100');
+
+    buttonContainer.appendChild(moreInfoButton);
+    buttonContainer.appendChild(addToOrderButton);
 
     const itemWrapper = document.createElement('div');
     itemWrapper.classList.add('d-flex', 'justify-content-between', 'align-items-center');
     itemWrapper.appendChild(serviceIcon); 
     itemWrapper.appendChild(serviceText);  
-    itemWrapper.appendChild(addToOrderButton); 
+    itemWrapper.appendChild(buttonContainer); 
 
     listItem.appendChild(itemWrapper);
     serviceList.appendChild(listItem);
@@ -168,69 +146,89 @@ function createAccordionItem(title, services, category) {
   return card;
 }
 
-let orderedItemsList = JSON.parse(localStorage.getItem('orderedItemsList')) || [];
+function assignServiceIcon(serviceName, serviceIcon) {
+const iconMapping = {
+  "General House Cleaning": 'fa-broom',
+  "Carpet & Upholstery Cleaning": 'fa-couch',
+  "Window Cleaning": 'fa-window-maximize',
+  "Deep Cleaning": 'fa-hand-sparkles',
+  "Move-in/Move-out Cleaning": 'fa-house',
+  "Office Cleaning": 'fa-broom',
+  "Commercial Carpet Cleaning": 'fa-building',
+  "Window Washing": 'fa-window-maximize',
+  "Post-Construction Cleaning": 'fa-industry',
+  "Restroom Sanitization": 'fa-restroom',
+  "Pressure Washing": 'fa-spray-can-sparkles',
+  "Floor Scrubbing & Polishing": 'fa-broom',
+  "Machinery Cleaning": 'fa-gears',
+  "Factory Cleaning": 'fa-industry',
+  "Waste Disposal": 'fa-recycle'
+};
+
+serviceIcon.classList.add('fas', iconMapping[serviceName] || 'fa-cleaning', 'service-icon');
+}
 
 function addToOrder(service) {
-  // Create a new <li> element to display the service in the list
-  const orderItem = document.createElement('li');
-  orderItem.textContent = service;
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Add the new item to the list displayed on the page
-  const orderedItemsListElement = document.getElementById('orderedItemsList');
-  orderedItemsListElement.appendChild(orderItem);
+const existingService = cart.find(item => item === service);
 
-  // Add the service to the orderedItemsList array
-  orderedItemsList.push(service);
-
-  // Save the updated orderedItemsList array to localStorage
-  localStorage.setItem('orderedItemsList', JSON.stringify(orderedItemsList));
-
-  // Optionally: Display the ordered items again (to update the list view)
-  displayOrderedItems();
+if (!existingService) {
+  cart.push(service);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${service} has been added to your cart.`);
+} else {
+  alert(`${service} is already in your cart.`);
 }
-function displayOrderedItems() {
-  // Get the element where the ordered items will be displayed
-  const orderedItemsListElement = document.getElementById('orderedItemsList');
-
-  // Clear the list before displaying the updated items
-  orderedItemsListElement.innerHTML = '';
-
-  // Loop through the orderedItemsList array and display each item
-  orderedItemsList.forEach(function(item) {
-      const orderItem = document.createElement('li');
-      orderItem.textContent = item;
-      orderedItemsListElement.appendChild(orderItem);
-  });
 }
 
-    function addToOrder(service) {
-      const orderedItemsListElement = document.getElementById('orderedItemsList');
-      
-      const orderItem = document.createElement('li');
-      orderItem.textContent = service;
-      
-      orderedItemsListElement.appendChild(orderItem);
-  
-      orderedItemsList.push(service);
-  
-      localStorage.setItem('orderedItemsList', JSON.stringify(orderedItemsList));
-  
-  }
+function displayCart() {
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+console.log('Cart data:', cart);
 
+const cartContainer = document.getElementById('cartItems');
+cartContainer.innerHTML = ''; 
+if (cart.length === 0) {
+  cartContainer.innerHTML = 'Your cart is empty.';
+  return;
+}
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const orderedItemsList = JSON.parse(localStorage.getItem('orderedItemsList')) || [];
-
-    const orderedItemsListElement = document.getElementById('orderedItemsList');
-
-    orderedItemsListElement.innerHTML = '';
-
-    orderedItemsList.forEach(function (item) {
-        const orderItem = document.createElement('li');
-        orderItem.textContent = item;
-        orderedItemsListElement.appendChild(orderItem);
-    });
+cart.forEach(service => {
+  const listItem = document.createElement('li');
+  listItem.textContent = service;
+  cartContainer.appendChild(listItem);   
 });
+}
 
-  window.onload = createAccordion;
-  
+function clearCart() {
+localStorage.removeItem('cart');
+alert('Your cart has been cleared.');
+displayCart();
+}
+
+const modal = document.getElementById("serviceModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const closeModalButton = document.getElementsByClassName("close")[0];
+
+function openModal(title, description) {
+modalTitle.textContent = title;
+modalDescription.textContent = description;
+modal.style.display = "block";
+}
+
+closeModalButton.onclick = function() {
+modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+if (event.target == modal) {
+    modal.style.display = "none";
+}
+}
+
+window.onload = function() {
+createAccordion();
+displayCart(); 
+}
+

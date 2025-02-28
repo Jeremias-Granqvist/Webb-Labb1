@@ -57,9 +57,23 @@
 
 h5{
     color: white;
+    font-family:  Courier;
+    font-weight: bold;
 }
 
 .service-icon {
     font-size: 24px;
     margin-right: 10px; 
   }
+
+.card a{
+    color:black;
+}
+
+#weather {
+    font-size: 20px;
+    margin-top: 20px;
+}
+#loading {
+    font-size: 18px;
+}
