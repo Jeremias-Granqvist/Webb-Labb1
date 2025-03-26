@@ -2,18 +2,18 @@ const apiKey = 'ea3ba99484d74ee2acc8f77b34728aa4';
 
 const businessLat = 57.7089;
 const businessLon = 11.9746;
-
 function getWeather(lat, lon) {
-    const url = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${apiKey}`;
+    //const url = `https://api.weatherbit.io/v2.0/current&lat=${lat}&lon=${lon}&key=${apiKey}`;
+
+    const url = 'https://api.weatherapi.com/v1/current.json?key=a95052a7a95342c7933223417252603 &q=Gothenburg&aqi=no';
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const weather = data.data[0];
-            const cityName = weather.city_name;
-            const temperature = weather.temp;
-            const description = weather.weather.description;
-            const windSpeed = weather.wind_spd;
+            const cityName = data.location.name;
+            const temperature = data.current.temp_c;
+            const description = data.current.condition.text;
+            const windSpeed = data.current.wind_kph;
 
             const weatherDiv = document.getElementById('weather');
             weatherDiv.innerHTML = `
